@@ -1,0 +1,66 @@
+﻿@model ban_quan_ao_asp.net_mvc.Models.NguoiDung
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- Breadcrumb -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
+                <span class="breadcrumb-item active" href="#">Hồ sơ</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-3 col-12">
+            <div class="user-tab bg-light d-flex flex-column mb-30">
+                <a href="/User/Info" class="user-tab__item text-dark p-2 active">
+                    <i class="fas fa-user me-2"></i>Thông tin tài khoản
+                </a>
+                <a href="/User/ChangePassword" class="user-tab__item text-dark p-2">
+                    <i class="fas fa-lock me-2"></i>Đổi mật khẩu
+                </a>
+                <a href="/User/Order" class="user-tab__item text-dark p-2">
+                    <i class="fas fa-shopping-bag me-2"></i>Đơn hàng
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 col-12">
+            <div class="bg-light p-30">
+                <div class="user-info">
+                    @using (Html.BeginForm("Info", "User", FormMethod.Post, new { @class = "user-info" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <label>Tên người dùng</label>
+                                @Html.EditorFor(model => model.TenNguoiDung, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.accountName } })
+                                @Html.ValidationMessageFor(model => model.TenNguoiDung, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>Số điện thoại</label>
+                                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.phoneNumber } })
+                                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.email } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>Địa chỉ</label>
+                                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.address } })
+                            </div>
+                        </div>
+                        <button class="btn btn-primary rounded-0 shadow-none">Cập nhật</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

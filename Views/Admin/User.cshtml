@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row px-xl-3">
+    <div class="col-12">
+        <h5 class="title position-relative text-dark text-uppercase mb-3">
+            <span class="bg-secondary pe-3">Danh sách người dùng</span>
+        </h5>
+        <div class="custom-datatable bg-light p-30 table-responsive">
+            <table id="user-table" class="table table-bordered text-center">
+                <thead class="align-middle table-dark">
+                    <tr>
+                        <th>Tên đăng nhập</th>
+                        <th>Mật khẩu</th>
+                        <th>Thông tin khác</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach (var userItem in ViewBag.UserList)
+                    {
+                        <tr>
+                            <td>@userItem.TenDangNhap</td>
+                            <td>@userItem.MatKhau</td>
+                            <td>
+                                - Tên người dùng: @userItem.TenNguoiDung <br>
+                                - Số điện thoại: @userItem.SoDienThoai <br>
+                                - Email: @userItem.Email <br>
+                                - Địa chỉ: @userItem.DiaChi <br>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

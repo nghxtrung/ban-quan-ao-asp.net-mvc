@@ -1,0 +1,110 @@
+﻿@model ban_quan_ao_asp.net_mvc.Models.DonHang
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- Breadcrumb -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/Home">Trang Chủ</a>
+                <a class="breadcrumb-item text-dark" href="/Product/Category">Shop</a>
+                <span class="breadcrumb-item active" href="#">Thanh toán</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Body -->
+<div class="container-fluid">
+    @using (Html.BeginForm("Checkout", "Cart" ,FormMethod.Post ,new { @class = "row px-xl-5" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-lg-8">
+            <h5 class="title position-relative text-dark text-uppercase mb-3">
+                <span class="bg-secondary pe-3">Thông tin nhận hàng</span>
+            </h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Tên khách hàng</label>
+                        @Html.EditorFor(model => model.TenKhachHang, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.userName } })
+                        @Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Số điện thoại</label>
+                        @Html.EditorFor(model => model.SoDienThoaiNhanHang, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.phoneNumber } })
+                        @Html.ValidationMessageFor(model => model.SoDienThoaiNhanHang, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Địa chỉ nhận hàng</label>
+                        @Html.EditorFor(model => model.DiaChiGiaoHang, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @Value = @ViewBag.address } })
+                        @Html.ValidationMessageFor(model => model.DiaChiGiaoHang, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Ghi chú</label>
+                        @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h5 class="title position-relative text-dark text-uppercase mb-3">
+                <span class="bg-secondary pe-3">Thông tin đơn hàng</span>
+            </h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom">
+                    <h6 class="mb-3">Danh sách sản phẩm</h6>
+                    @foreach (var productCartItem in ViewBag.productCartList)
+                    {
+                        <div class="d-flex justify-content-between text-gray">
+                            <p>@productCartItem.TenSanPham - @productCartItem.TenMau - @productCartItem.KichCo</p>
+                            <p>@productCartItem.ThanhTien</p>
+                        </div>
+                    }
+                </div>
+                <div class="border-bottom pt-3 pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Tổng tiền sản phẩm</h6>
+                        <h6>@ViewBag.sumTotalProduct</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6 class="font-weight-medium">Phí giao hàng</h6>
+                        <h6 class="font-weight-medium">30000</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Khuyến mại</h6>
+                        <h6>@ViewBag.couponPrice</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Tổng tiền</h5>
+                        <h5>@ViewBag.sumTotal</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-5">
+                <h5 class="title position-relative text-dark text-uppercase mb-3">
+                    <span class="bg-secondary pe-3">Phương thức thanh toán</span>
+                </h5>
+                <div class="bg-light p-30">
+                    <div class="d-flex flex-column">
+                        <div class="radio-button me-3 form-group">
+                            @Html.RadioButtonFor(model => model.PTThanhToan, "Thanh toán khi nhận hàng", new { @class = "radio-button__input", @id = "payment-choice-1" })
+                            <label for="payment-choice-1" class="radio-button__checkmark"></label>
+                            <label for="payment-choice-1" class="radio-button__label">Thanh toán khi nhận hàng</label>
+                        </div>
+                        <div class="radio-button me-3 form-group">
+                            @Html.RadioButtonFor(model => model.PTThanhToan, "Thanh toán online", new { @class = "radio-button__input", @id = "payment-choice-2" })
+                            <label for="payment-choice-2" class="radio-button__checkmark"></label>
+                            <label for="payment-choice-2" class="radio-button__label">Thanh toán online</label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.PTThanhToan, "", new { @class = "text-danger mb-3" })
+                    </div>
+                    <button class="btn btn-primary fw-bold py-3 w-100 shadow-none rounded-0">Đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

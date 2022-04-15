@@ -1,0 +1,83 @@
+﻿@using ban_quan_ao_asp.net_mvc.Models;
+@model List<DonHang>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- Breadcrumb -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
+                <span class="breadcrumb-item active" href="#">Hồ sơ</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-3 col-12">
+            <div class="user-tab bg-light d-flex flex-column mb-30">
+                <a href="/User/Info" class="user-tab__item text-dark p-2">
+                    <i class="fas fa-user me-2"></i>Thông tin tài khoản
+                </a>
+                <a href="/User/ChangePassword" class="user-tab__item text-dark p-2">
+                    <i class="fas fa-lock me-2"></i>Đổi mật khẩu
+                </a>
+                <a href="/User/Order" class="user-tab__item text-dark p-2 active">
+                    <i class="fas fa-shopping-bag me-2"></i>Đơn hàng
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 col-12">
+            <div class="bg-light p-30">
+                <div class="user-order">
+                    <div class="custom-datatable table-responsive">
+                        <table id="user-info-table" class="table table-bordered text-center">
+                            <thead class="align-middle table-dark">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Tình trạng</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                @{
+                                    int i = 1;
+                                    foreach (var orderItem in Model)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@orderItem.MaDonHang</td>
+                                            <td>@orderItem.NgayDatHang.ToString("dd/MM/yyyy")</td>
+                                            <td>@orderItem.TinhTrang</td>
+                                            <td class="align-middle">
+                                                <button class="btn btn-primary btn-sm shadow-none rounded-0 mb-2" data-bs-toggle="modal" data-bs-target="#user-@orderItem.MaDonHang">
+                                                    <i class="fas fa-eye me-2"></i>Xem
+                                                </button>
+                                                @using (Html.BeginForm("RemoveOrder", "User", new { @madonhang = orderItem.MaDonHang }, FormMethod.Post, new { @class = "d-inline" }))
+                                                {
+                                                    <button class="btn btn-danger btn-sm shadow-none rounded-0 mb-2">
+                                                        <i class="fas fa-times me-2"></i>Huỷ
+                                                    </button>
+                                                }
+                                            </td>
+                                        </tr>
+                                        ++i;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@foreach (var orderItem in Model)
+{
+    @Html.Action("OrderDetailPartial", "User", new { madonhang = orderItem.MaDonHang })
+}

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- Login -->
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <h2 class="text-center my-4">Đăng nhập</h2>
+            @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "d-flex flex-column" }))
+            {
+                @Html.TextBox("txtAccountName", "", htmlAttributes: new { @class = "form-control rounded-0 shadow-none mb-3", @placeholder = "Tên đăng nhập/Email/Số điện thoại" })
+                @Html.Password("txtPassword", "", htmlAttributes: new { @class = "form-control rounded-0 shadow-none mb-3", @placeholder = "Mật khẩu" })
+                <button type="submit" class="btn btn-primary rounded-0 shadow-none mb-3">Đăng nhập</button>
+            }
+            <p class="text-center">Bạn chưa có tài khoản? <a href="/User/Register" class="text-primary">Đăng ký</a></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLShopBanHangOnlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Anh">
+          <Key>
+            <PropertyRef Name="MaAnh" />
+          </Key>
+          <Property Name="MaAnh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenFileAnh" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnhSP">
+          <Key>
+            <PropertyRef Name="MaMSSP" />
+            <PropertyRef Name="MaAnh" />
+          </Key>
+          <Property Name="MaMSSP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaAnh" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChiTietDH">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+            <PropertyRef Name="MaMSSP" />
+            <PropertyRef Name="KichCo" />
+          </Key>
+          <Property Name="MaDonHang" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaMSSP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="KichCo" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SoLuongMua" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChiTietSP">
+          <Key>
+            <PropertyRef Name="MaMSSP" />
+            <PropertyRef Name="KichCo" />
+          </Key>
+          <Property Name="MaMSSP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="KichCo" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanhGia">
+          <Key>
+            <PropertyRef Name="MaDanhGia" />
+          </Key>
+          <Property Name="MaDanhGia" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaSanPham" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DiemDanhGia" Type="int" Nullable="false" />
+          <Property Name="NDDanhGia" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="NDPhanHoi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MaNguoiDung" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+          </Key>
+          <Property Name="MaDonHang" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaKM" Type="varchar" MaxLength="10" />
+          <Property Name="NgayDatHang" Type="date" Nullable="false" />
+          <Property Name="DiaChiGiaoHang" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PTThanhToan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaNguoiDung" Type="varchar" MaxLength="10" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoDienThoaiNhanHang" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TongTien" Type="money" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="MaKM" />
+          </Key>
+          <Property Name="MaKM" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NgayBatDau" Type="datetime" />
+          <Property Name="NgayKetThuc" Type="datetime" />
+          <Property Name="PhanTramGiam" Type="int" />
+        </EntityType>
+        <EntityType Name="MauSac">
+          <Key>
+            <PropertyRef Name="MaMau" />
+          </Key>
+          <Property Name="MaMau" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenMau" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NguoiDung">
+          <Key>
+            <PropertyRef Name="MaNguoiDung" />
+          </Key>
+          <Property Name="MaNguoiDung" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenDangNhap" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TenNguoiDung" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PhanLoai">
+          <Key>
+            <PropertyRef Name="MaPhanLoai" />
+          </Key>
+          <Property Name="MaPhanLoai" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PhanLoaiChinh" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PhanLoaiPhu" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PhanLoaiMSSP">
+          <Key>
+            <PropertyRef Name="MaMSSP" />
+          </Key>
+          <Property Name="MaMSSP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaSanPham" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaMau" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GiaNhap" Type="money" Nullable="false" />
+          <Property Name="GiaBan" Type="money" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" />
+          <Property Name="MoTaNgan" Type="nvarchar(max)" />
+          <Property Name="AnhDaiDien" Type="nvarchar(max)" />
+          <Property Name="NoiBat" Type="bit" />
+          <Property Name="MaPhanLoai" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__DanhGia__MaNguoi__3D5E1FD2">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DanhGia" Type="Self.DanhGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Principal>
+            <Dependent Role="DanhGia">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonHang__MaNguoi__3F466844">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_anhsp_anhsp">
+          <End Role="Anh" Type="Self.Anh" Multiplicity="1" />
+          <End Role="AnhSP" Type="Self.AnhSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anh">
+              <PropertyRef Name="MaAnh" />
+            </Principal>
+            <Dependent Role="AnhSP">
+              <PropertyRef Name="MaAnh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_anhsp_phanloaimssp">
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="1" />
+          <End Role="AnhSP" Type="Self.AnhSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaMSSP" />
+            </Principal>
+            <Dependent Role="AnhSP">
+              <PropertyRef Name="MaMSSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_danhgia_sanpham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="DanhGia" Type="Self.DanhGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="DanhGia">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_donhang_khuyenmai">
+          <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhuyenMai">
+              <PropertyRef Name="MaKM" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sanpham_phanloai">
+          <End Role="PhanLoai" Type="Self.PhanLoai" Multiplicity="0..1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoai">
+              <PropertyRef Name="MaPhanLoai" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="MaPhanLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkchitietdh_chitietsp">
+          <End Role="ChiTietSP" Type="Self.ChiTietSP" Multiplicity="1" />
+          <End Role="ChiTietDH" Type="Self.ChiTietDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChiTietSP">
+              <PropertyRef Name="MaMSSP" />
+              <PropertyRef Name="KichCo" />
+            </Principal>
+            <Dependent Role="ChiTietDH">
+              <PropertyRef Name="MaMSSP" />
+              <PropertyRef Name="KichCo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkchitietdh_donhang">
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+          <End Role="ChiTietDH" Type="Self.ChiTietDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="MaDonHang" />
+            </Principal>
+            <Dependent Role="ChiTietDH">
+              <PropertyRef Name="MaDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkchitietsp_phanloaimssp">
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="1" />
+          <End Role="ChiTietSP" Type="Self.ChiTietSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaMSSP" />
+            </Principal>
+            <Dependent Role="ChiTietSP">
+              <PropertyRef Name="MaMSSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkphanloaimssp_mausac">
+          <End Role="MauSac" Type="Self.MauSac" Multiplicity="1" />
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MauSac">
+              <PropertyRef Name="MaMau" />
+            </Principal>
+            <Dependent Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaMau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkphanloaimssp_sanpham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="deleteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAllCategoryColorSize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAllColorProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAllDetailOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="madonhang" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAllImageColorProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+          <Parameter Name="mamau" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getAllProductSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tensanpham" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getCategoryColorSize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+          <Parameter Name="mamau" Type="varchar" Mode="In" />
+          <Parameter Name="kichco" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getCategoryProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getProductsCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maphanloai" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getSizeProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+          <Parameter Name="mamau" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="insertImageProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mamssp" Type="varchar" Mode="In" />
+          <Parameter Name="maanh" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="removeOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="madonhang" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="updateFeatureStatusProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+          <Parameter Name="noibat" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="updateStatusProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masanpham" Type="varchar" Mode="In" />
+          <Parameter Name="trangthai" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="QLShopBanHangOnlineModelStoreContainer">
+          <EntitySet Name="Anh" EntityType="Self.Anh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnhSP" EntityType="Self.AnhSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietDH" EntityType="Self.ChiTietDH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietSP" EntityType="Self.ChiTietSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhGia" EntityType="Self.DanhGia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhuyenMai" EntityType="Self.KhuyenMai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MauSac" EntityType="Self.MauSac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhanLoai" EntityType="Self.PhanLoai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhanLoaiMSSP" EntityType="Self.PhanLoaiMSSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DanhGia__MaNguoi__3D5E1FD2" Association="Self.FK__DanhGia__MaNguoi__3D5E1FD2">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="DanhGia" EntitySet="DanhGia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonHang__MaNguoi__3F466844" Association="Self.FK__DonHang__MaNguoi__3F466844">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_anhsp_anhsp" Association="Self.fk_anhsp_anhsp">
+            <End Role="Anh" EntitySet="Anh" />
+            <End Role="AnhSP" EntitySet="AnhSP" />
+          </AssociationSet>
+          <AssociationSet Name="fk_anhsp_phanloaimssp" Association="Self.fk_anhsp_phanloaimssp">
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSP" />
+            <End Role="AnhSP" EntitySet="AnhSP" />
+          </AssociationSet>
+          <AssociationSet Name="fk_danhgia_sanpham" Association="Self.fk_danhgia_sanpham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="DanhGia" EntitySet="DanhGia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_donhang_khuyenmai" Association="Self.fk_donhang_khuyenmai">
+            <End Role="KhuyenMai" EntitySet="KhuyenMai" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sanpham_phanloai" Association="Self.fk_sanpham_phanloai">
+            <End Role="PhanLoai" EntitySet="PhanLoai" />
+            <End Role="SanPham" EntitySet="SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="fkchitietdh_chitietsp" Association="Self.fkchitietdh_chitietsp">
+            <End Role="ChiTietSP" EntitySet="ChiTietSP" />
+            <End Role="ChiTietDH" EntitySet="ChiTietDH" />
+          </AssociationSet>
+          <AssociationSet Name="fkchitietdh_donhang" Association="Self.fkchitietdh_donhang">
+            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="ChiTietDH" EntitySet="ChiTietDH" />
+          </AssociationSet>
+          <AssociationSet Name="fkchitietsp_phanloaimssp" Association="Self.fkchitietsp_phanloaimssp">
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSP" />
+            <End Role="ChiTietSP" EntitySet="ChiTietSP" />
+          </AssociationSet>
+          <AssociationSet Name="fkphanloaimssp_mausac" Association="Self.fkphanloaimssp_mausac">
+            <End Role="MauSac" EntitySet="MauSac" />
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSP" />
+          </AssociationSet>
+          <AssociationSet Name="fkphanloaimssp_sanpham" Association="Self.fkphanloaimssp_sanpham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLShopBanHangOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anh">
+          <Key>
+            <PropertyRef Name="MaAnh" />
+          </Key>
+          <Property Name="MaAnh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenFileAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PhanLoaiMSSPs" Relationship="Self.AnhSP" FromRole="Anh" ToRole="PhanLoaiMSSP" />
+        </EntityType>
+        <EntityType Name="ChiTietDH">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+            <PropertyRef Name="MaMSSP" />
+            <PropertyRef Name="KichCo" />
+          </Key>
+          <Property Name="MaDonHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaMSSP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KichCo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuongMua" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChiTietSP" Relationship="Self.fkchitietdh_chitietsp" FromRole="ChiTietDH" ToRole="ChiTietSP" />
+          <NavigationProperty Name="DonHang" Relationship="Self.fkchitietdh_donhang" FromRole="ChiTietDH" ToRole="DonHang" />
+        </EntityType>
+        <EntityType Name="ChiTietSP">
+          <Key>
+            <PropertyRef Name="MaMSSP" />
+            <PropertyRef Name="KichCo" />
+          </Key>
+          <Property Name="MaMSSP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KichCo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChiTietDHs" Relationship="Self.fkchitietdh_chitietsp" FromRole="ChiTietSP" ToRole="ChiTietDH" />
+          <NavigationProperty Name="PhanLoaiMSSP" Relationship="Self.fkchitietsp_phanloaimssp" FromRole="ChiTietSP" ToRole="PhanLoaiMSSP" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+          </Key>
+          <Property Name="MaDonHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaKM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NgayDatHang" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DiaChiGiaoHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PTThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ChiTietDHs" Relationship="Self.fkchitietdh_donhang" FromRole="DonHang" ToRole="ChiTietDH" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK__DonHang__MaNguoi__3F466844" FromRole="DonHang" ToRole="NguoiDung" />
+          <NavigationProperty Name="KhuyenMai" Relationship="Self.fk_donhang_khuyenmai" FromRole="DonHang" ToRole="KhuyenMai" />
+          <Property Name="TenKhachHang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoaiNhanHang" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="MaKM" />
+          </Key>
+          <Property Name="MaKM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgayBatDau" Type="DateTime" Precision="3" />
+          <Property Name="NgayKetThuc" Type="DateTime" Precision="3" />
+          <Property Name="PhanTramGiam" Type="Int32" />
+          <NavigationProperty Name="DonHangs" Relationship="Self.fk_donhang_khuyenmai" FromRole="KhuyenMai" ToRole="DonHang" />
+        </EntityType>
+        <EntityType Name="MauSac">
+          <Key>
+            <PropertyRef Name="MaMau" />
+          </Key>
+          <Property Name="MaMau" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenMau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PhanLoaiMSSPs" Relationship="Self.fkphanloaimssp_mausac" FromRole="MauSac" ToRole="PhanLoaiMSSP" />
+        </EntityType>
+        <EntityType Name="NguoiDung">
+          <Key>
+            <PropertyRef Name="MaNguoiDung" />
+          </Key>
+          <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenDangNhap" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenNguoiDung" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__MaNguoi__3F466844" FromRole="NguoiDung" ToRole="DonHang" />
+          <NavigationProperty Name="DanhGias" Relationship="Self.FK__DanhGia__MaNguoi__3D5E1FD2" FromRole="NguoiDung" ToRole="DanhGia" />
+        </EntityType>
+        <EntityType Name="PhanLoai">
+          <Key>
+            <PropertyRef Name="MaPhanLoai" />
+          </Key>
+          <Property Name="MaPhanLoai" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhanLoaiChinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhanLoaiPhu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SanPhams" Relationship="QLShopBanHangOnlineModel.fk_sanpham_phanloai" FromRole="PhanLoai" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="PhanLoaiMSSP">
+          <Key>
+            <PropertyRef Name="MaMSSP" />
+          </Key>
+          <Property Name="MaMSSP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaMau" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ChiTietSPs" Relationship="Self.fkchitietsp_phanloaimssp" FromRole="PhanLoaiMSSP" ToRole="ChiTietSP" />
+          <NavigationProperty Name="MauSac" Relationship="Self.fkphanloaimssp_mausac" FromRole="PhanLoaiMSSP" ToRole="MauSac" />
+          <NavigationProperty Name="SanPham" Relationship="Self.fkphanloaimssp_sanpham" FromRole="PhanLoaiMSSP" ToRole="SanPham" />
+          <NavigationProperty Name="Anhs" Relationship="Self.AnhSP" FromRole="PhanLoaiMSSP" ToRole="Anh" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiaNhap" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="GiaBan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhanLoaiMSSPs" Relationship="Self.fkphanloaimssp_sanpham" FromRole="SanPham" ToRole="PhanLoaiMSSP" />
+          <NavigationProperty Name="DanhGias" Relationship="Self.fk_danhgia_sanpham" FromRole="SanPham" ToRole="DanhGia" />
+          <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiBat" Type="Boolean" />
+          <Property Name="MaPhanLoai" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhanLoai" Relationship="QLShopBanHangOnlineModel.fk_sanpham_phanloai" FromRole="SanPham" ToRole="PhanLoai" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DanhGia">
+          <Key>
+            <PropertyRef Name="MaDanhGia" />
+          </Key>
+          <Property Name="MaDanhGia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DiemDanhGia" Type="Int32" Nullable="false" />
+          <Property Name="NDDanhGia" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NDPhanHoi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK__DanhGia__MaNguoi__3D5E1FD2" FromRole="DanhGia" ToRole="NguoiDung" />
+          <NavigationProperty Name="SanPham" Relationship="Self.fk_danhgia_sanpham" FromRole="DanhGia" ToRole="SanPham" />
+        </EntityType>
+        <Association Name="fkchitietdh_chitietsp">
+          <End Role="ChiTietSP" Type="Self.ChiTietSP" Multiplicity="1" />
+          <End Role="ChiTietDH" Type="Self.ChiTietDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChiTietSP">
+              <PropertyRef Name="MaMSSP" />
+              <PropertyRef Name="KichCo" />
+            </Principal>
+            <Dependent Role="ChiTietDH">
+              <PropertyRef Name="MaMSSP" />
+              <PropertyRef Name="KichCo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkchitietdh_donhang">
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+          <End Role="ChiTietDH" Type="Self.ChiTietDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="MaDonHang" />
+            </Principal>
+            <Dependent Role="ChiTietDH">
+              <PropertyRef Name="MaDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkchitietsp_phanloaimssp">
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="1" />
+          <End Role="ChiTietSP" Type="Self.ChiTietSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaMSSP" />
+            </Principal>
+            <Dependent Role="ChiTietSP">
+              <PropertyRef Name="MaMSSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonHang__MaNguoi__3F466844">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_donhang_khuyenmai">
+          <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhuyenMai">
+              <PropertyRef Name="MaKM" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkphanloaimssp_mausac">
+          <End Role="MauSac" Type="Self.MauSac" Multiplicity="1" />
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MauSac">
+              <PropertyRef Name="MaMau" />
+            </Principal>
+            <Dependent Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaMau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DanhGia__MaNguoi__3D5E1FD2">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DanhGia" Type="Self.DanhGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Principal>
+            <Dependent Role="DanhGia">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkphanloaimssp_sanpham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="PhanLoaiMSSP">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_danhgia_sanpham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="DanhGia" Type="Self.DanhGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="DanhGia">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AnhSP">
+          <End Role="Anh" Type="Self.Anh" Multiplicity="*" />
+          <End Role="PhanLoaiMSSP" Type="Self.PhanLoaiMSSP" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="QLShopBanHangOnlineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Anhs" EntityType="Self.Anh" />
+          <EntitySet Name="ChiTietDHs" EntityType="Self.ChiTietDH" />
+          <EntitySet Name="ChiTietSPs" EntityType="Self.ChiTietSP" />
+          <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+          <EntitySet Name="KhuyenMais" EntityType="Self.KhuyenMai" />
+          <EntitySet Name="MauSacs" EntityType="Self.MauSac" />
+          <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+          <EntitySet Name="PhanLoais" EntityType="Self.PhanLoai" />
+          <EntitySet Name="PhanLoaiMSSPs" EntityType="Self.PhanLoaiMSSP" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="DanhGias" EntityType="Self.DanhGia" />
+          <AssociationSet Name="fkchitietdh_chitietsp" Association="Self.fkchitietdh_chitietsp">
+            <End Role="ChiTietSP" EntitySet="ChiTietSPs" />
+            <End Role="ChiTietDH" EntitySet="ChiTietDHs" />
+          </AssociationSet>
+          <AssociationSet Name="fkchitietdh_donhang" Association="Self.fkchitietdh_donhang">
+            <End Role="DonHang" EntitySet="DonHangs" />
+            <End Role="ChiTietDH" EntitySet="ChiTietDHs" />
+          </AssociationSet>
+          <AssociationSet Name="fkchitietsp_phanloaimssp" Association="Self.fkchitietsp_phanloaimssp">
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSPs" />
+            <End Role="ChiTietSP" EntitySet="ChiTietSPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonHang__MaNguoi__3F466844" Association="Self.FK__DonHang__MaNguoi__3F466844">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_donhang_khuyenmai" Association="Self.fk_donhang_khuyenmai">
+            <End Role="KhuyenMai" EntitySet="KhuyenMais" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="fkphanloaimssp_mausac" Association="Self.fkphanloaimssp_mausac">
+            <End Role="MauSac" EntitySet="MauSacs" />
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DanhGia__MaNguoi__3D5E1FD2" Association="Self.FK__DanhGia__MaNguoi__3D5E1FD2">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="DanhGia" EntitySet="DanhGias" />
+          </AssociationSet>
+          <AssociationSet Name="fkphanloaimssp_sanpham" Association="Self.fkphanloaimssp_sanpham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSPs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_danhgia_sanpham" Association="Self.fk_danhgia_sanpham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="DanhGia" EntitySet="DanhGias" />
+          </AssociationSet>
+          <AssociationSet Name="AnhSP" Association="Self.AnhSP">
+            <End Role="Anh" EntitySet="Anhs" />
+            <End Role="PhanLoaiMSSP" EntitySet="PhanLoaiMSSPs" />
+          </AssociationSet>
+          <FunctionImport Name="getAllColorProduct" ReturnType="Collection(QLShopBanHangOnlineModel.getAllColorProduct_Result)">
+          <Parameter Name="masanpham" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getAllImageColorProduct" ReturnType="Collection(QLShopBanHangOnlineModel.getAllImageColorProduct_Result)">
+            <Parameter Name="masanpham" Mode="In" Type="String" />
+            <Parameter Name="mamau" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getSizeProduct" ReturnType="Collection(QLShopBanHangOnlineModel.getSizeProduct_Result)">
+            <Parameter Name="masanpham" Mode="In" Type="String" />
+            <Parameter Name="mamau" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="fk_sanpham_phanloai" Association="QLShopBanHangOnlineModel.fk_sanpham_phanloai">
+            <End Role="PhanLoai" EntitySet="PhanLoais" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <FunctionImport Name="insertImageProduct">
+            <Parameter Name="mamssp" Mode="In" Type="String" />
+            <Parameter Name="maanh" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCategoryProduct" ReturnType="Collection(QLShopBanHangOnlineModel.getCategoryProduct_Result)">
+          <Parameter Name="masanpham" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getProductsCategory" ReturnType="Collection(QLShopBanHangOnlineModel.getProductsCategory_Result)">
+          <Parameter Name="maphanloai" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCategoryColorSize" ReturnType="Collection(QLShopBanHangOnlineModel.getCategoryColorSize_Result)">
+            <Parameter Name="masanpham" Mode="In" Type="String" />
+            <Parameter Name="mamau" Mode="In" Type="String" />
+            <Parameter Name="kichco" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getAllCategoryColorSize" ReturnType="Collection(QLShopBanHangOnlineModel.getAllCategoryColorSize_Result)">
+          <Parameter Name="masanpham" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getAllProduct" ReturnType="Collection(QLShopBanHangOnlineModel.getAllProduct_Result)" />
+          <FunctionImport Name="deleteProduct">
+          <Parameter Name="masanpham" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="updateStatusProduct">
+            <Parameter Name="masanpham" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="removeOrder">
+          <Parameter Name="madonhang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="updateFeatureStatusProduct">
+            <Parameter Name="masanpham" Mode="In" Type="String" />
+            <Parameter Name="noibat" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="getAllDetailOrder" ReturnType="Collection(QLShopBanHangOnlineModel.getAllDetailOrder_Result)">
+          <Parameter Name="madonhang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getAllProductSearch" ReturnType="Collection(QLShopBanHangOnlineModel.getAllProductSearch_Result)">
+          <Parameter Name="tensanpham" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getAllColorProduct_Result">
+          <Property Type="String" Name="MaMau" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenMau" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="getAllImageColorProduct_Result">
+          <Property Type="String" Name="MaAnh" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="TenFileAnh" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getSizeProduct_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="MaMau" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="KichCo" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="SoLuong" Nullable="false" />
+        </ComplexType>
+        <Association Name="fk_sanpham_phanloai">
+          <End Type="QLShopBanHangOnlineModel.PhanLoai" Role="PhanLoai" Multiplicity="0..1" />
+          <End Type="QLShopBanHangOnlineModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoai">
+              <PropertyRef Name="MaPhanLoai" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="MaPhanLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getCategoryProduct_Result">
+          <Property Type="String" Name="MaPhanLoai" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="PhanLoaiChinh" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="PhanLoaiPhu" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="getProductsCategory_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSanPham" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="GiaBan" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="TrangThai" Nullable="true" />
+          <Property Type="String" Name="AnhDaiDien" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getCategoryColorSize_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="MaMau" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenMau" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="KichCo" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="SoLuong" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getAllCategoryColorSize_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="MaMau" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenMau" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="KichCo" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="SoLuong" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getAllProduct_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSanPham" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="GiaNhap" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="GiaBan" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="TrangThai" Nullable="true" />
+          <Property Type="Boolean" Name="NoiBat" Nullable="true" />
+          <Property Type="String" Name="AnhDaiDien" Nullable="true" />
+          <Property Type="String" Name="MoTaNgan" Nullable="true" />
+          <Property Type="String" Name="MaPhanLoai" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="PhanLoaiChinh" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="PhanLoaiPhu" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="getAllDetailOrder_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSanPham" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TenMau" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="KichCo" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="SoLuongMua" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getAllProductSearch_Result">
+          <Property Type="String" Name="MaSanPham" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSanPham" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="GiaNhap" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="GiaBan" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="TrangThai" Nullable="true" />
+          <Property Type="String" Name="MoTaNgan" Nullable="true" />
+          <Property Type="String" Name="AnhDaiDien" Nullable="true" />
+          <Property Type="Boolean" Name="NoiBat" Nullable="true" />
+          <Property Type="String" Name="MaPhanLoai" Nullable="true" MaxLength="5" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLShopBanHangOnlineModelStoreContainer" CdmEntityContainer="QLShopBanHangOnlineEntities">
+          <EntitySetMapping Name="Anhs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.Anh">
+              <MappingFragment StoreEntitySet="Anh">
+                <ScalarProperty Name="MaAnh" ColumnName="MaAnh" />
+                <ScalarProperty Name="TenFileAnh" ColumnName="TenFileAnh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietDHs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.ChiTietDH">
+              <MappingFragment StoreEntitySet="ChiTietDH">
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
+                <ScalarProperty Name="MaMSSP" ColumnName="MaMSSP" />
+                <ScalarProperty Name="KichCo" ColumnName="KichCo" />
+                <ScalarProperty Name="SoLuongMua" ColumnName="SoLuongMua" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietSPs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.ChiTietSP">
+              <MappingFragment StoreEntitySet="ChiTietSP">
+                <ScalarProperty Name="MaMSSP" ColumnName="MaMSSP" />
+                <ScalarProperty Name="KichCo" ColumnName="KichCo" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonHangs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.DonHang">
+              <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="SoDienThoaiNhanHang" ColumnName="SoDienThoaiNhanHang" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
+                <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+                <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+                <ScalarProperty Name="DiaChiGiaoHang" ColumnName="DiaChiGiaoHang" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="PTThanhToan" ColumnName="PTThanhToan" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhuyenMais">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.KhuyenMai">
+              <MappingFragment StoreEntitySet="KhuyenMai">
+                <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="PhanTramGiam" ColumnName="PhanTramGiam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MauSacs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.MauSac">
+              <MappingFragment StoreEntitySet="MauSac">
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NguoiDungs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.NguoiDung">
+              <MappingFragment StoreEntitySet="NguoiDung">
+                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanLoais">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.PhanLoai">
+              <MappingFragment StoreEntitySet="PhanLoai">
+                <ScalarProperty Name="MaPhanLoai" ColumnName="MaPhanLoai" />
+                <ScalarProperty Name="PhanLoaiChinh" ColumnName="PhanLoaiChinh" />
+                <ScalarProperty Name="PhanLoaiPhu" ColumnName="PhanLoaiPhu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanLoaiMSSPs">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.PhanLoaiMSSP">
+              <MappingFragment StoreEntitySet="PhanLoaiMSSP">
+                <ScalarProperty Name="MaMSSP" ColumnName="MaMSSP" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="MaPhanLoai" ColumnName="MaPhanLoai" />
+                <ScalarProperty Name="NoiBat" ColumnName="NoiBat" />
+                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="GiaNhap" ColumnName="GiaNhap" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhGias">
+            <EntityTypeMapping TypeName="QLShopBanHangOnlineModel.DanhGia">
+              <MappingFragment StoreEntitySet="DanhGia">
+                <ScalarProperty Name="MaDanhGia" ColumnName="MaDanhGia" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="DiemDanhGia" ColumnName="DiemDanhGia" />
+                <ScalarProperty Name="NDDanhGia" ColumnName="NDDanhGia" />
+                <ScalarProperty Name="NDPhanHoi" ColumnName="NDPhanHoi" />
+                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AnhSP" TypeName="QLShopBanHangOnlineModel.AnhSP" StoreEntitySet="AnhSP">
+            <EndProperty Name="Anh">
+              <ScalarProperty Name="MaAnh" ColumnName="MaAnh" />
+            </EndProperty>
+            <EndProperty Name="PhanLoaiMSSP">
+              <ScalarProperty Name="MaMSSP" ColumnName="MaMSSP" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="getAllColorProduct" FunctionName="QLShopBanHangOnlineModel.Store.getAllColorProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getAllColorProduct_Result">
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAllImageColorProduct" FunctionName="QLShopBanHangOnlineModel.Store.getAllImageColorProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getAllImageColorProduct_Result">
+                <ScalarProperty Name="MaAnh" ColumnName="MaAnh" />
+                <ScalarProperty Name="TenFileAnh" ColumnName="TenFileAnh" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getSizeProduct" FunctionName="QLShopBanHangOnlineModel.Store.getSizeProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getSizeProduct_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="KichCo" ColumnName="KichCo" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertImageProduct" FunctionName="QLShopBanHangOnlineModel.Store.insertImageProduct" />
+          <FunctionImportMapping FunctionImportName="getCategoryProduct" FunctionName="QLShopBanHangOnlineModel.Store.getCategoryProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getCategoryProduct_Result">
+                <ScalarProperty Name="MaPhanLoai" ColumnName="MaPhanLoai" />
+                <ScalarProperty Name="PhanLoaiChinh" ColumnName="PhanLoaiChinh" />
+                <ScalarProperty Name="PhanLoaiPhu" ColumnName="PhanLoaiPhu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getProductsCategory" FunctionName="QLShopBanHangOnlineModel.Store.getProductsCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getProductsCategory_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCategoryColorSize" FunctionName="QLShopBanHangOnlineModel.Store.getCategoryColorSize">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getCategoryColorSize_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+                <ScalarProperty Name="KichCo" ColumnName="KichCo" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAllCategoryColorSize" FunctionName="QLShopBanHangOnlineModel.Store.getAllCategoryColorSize">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getAllCategoryColorSize_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+                <ScalarProperty Name="KichCo" ColumnName="KichCo" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAllProduct" FunctionName="QLShopBanHangOnlineModel.Store.getAllProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getAllProduct_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="GiaNhap" ColumnName="GiaNhap" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NoiBat" ColumnName="NoiBat" />
+                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+                <ScalarProperty Name="MaPhanLoai" ColumnName="MaPhanLoai" />
+                <ScalarProperty Name="PhanLoaiChinh" ColumnName="PhanLoaiChinh" />
+                <ScalarProperty Name="PhanLoaiPhu" ColumnName="PhanLoaiPhu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteProduct" FunctionName="QLShopBanHangOnlineModel.Store.deleteProduct" />
+          <FunctionImportMapping FunctionImportName="updateStatusProduct" FunctionName="QLShopBanHangOnlineModel.Store.updateStatusProduct" />
+          <FunctionImportMapping FunctionImportName="removeOrder" FunctionName="QLShopBanHangOnlineModel.Store.removeOrder" />
+          <FunctionImportMapping FunctionImportName="updateFeatureStatusProduct" FunctionName="QLShopBanHangOnlineModel.Store.updateFeatureStatusProduct" />
+          <FunctionImportMapping FunctionImportName="getAllDetailOrder" FunctionName="QLShopBanHangOnlineModel.Store.getAllDetailOrder">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getAllDetailOrder_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+                <ScalarProperty Name="KichCo" ColumnName="KichCo" />
+                <ScalarProperty Name="SoLuongMua" ColumnName="SoLuongMua" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAllProductSearch" FunctionName="QLShopBanHangOnlineModel.Store.getAllProductSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopBanHangOnlineModel.getAllProductSearch_Result">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="GiaNhap" ColumnName="GiaNhap" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+                <ScalarProperty Name="NoiBat" ColumnName="NoiBat" />
+                <ScalarProperty Name="MaPhanLoai" ColumnName="MaPhanLoai" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

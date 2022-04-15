@@ -1,0 +1,74 @@
+﻿@using ban_quan_ao_asp.net_mvc.Models;
+@model ban_quan_ao_asp.net_mvc.Models.Product
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { @class = "row px-xl-3", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-12">
+        <h5 class="title position-relative text-dark text-uppercase mb-3">
+            <span class="bg-secondary pe-3">Thông tin chung</span>
+        </h5>
+        <div class="bg-light p-30">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Phân loại chính</label>
+                    @Html.DropDownList("PhanLoaiChinh", null, htmlAttributes: new { @class = "form-select shadow-none rounded-0" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Phân loại phụ</label>
+                    @Html.DropDownList("PhanLoaiPhu", null, htmlAttributes: new { @class = "form-select shadow-none rounded-0" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Mã sản phẩm</label>
+                    @Html.EditorFor(model => model.MaSanPham, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @placeholder = "AOKHOAC001" } })
+                    @Html.ValidationMessageFor(model => model.MaSanPham, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Tên sản phẩm</label>
+                    @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @placeholder = "Áo sơ mi dài tay khử mùi" } })
+                    @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Giá nhập</label>
+                    @Html.EditorFor(model => model.GiaNhap, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @placeholder = "100000" } })
+                    @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Giá bán</label>
+                    @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @placeholder = "300000" } })
+                    @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Mô tả ngắn</label>
+                    @Html.EditorFor(model => model.MoTaNgan, new { htmlAttributes = new { @class = "form-control shadow-none rounded-0", @placeholder = "Áo sơ mi dài tay với chất liệu khử mùi, co giãn tự nhiên" } })
+                    @Html.ValidationMessageFor(model => model.MoTaNgan, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Ảnh đại diện</label>
+                    @Html.TextBoxFor(model => model.AnhDaiDien, new { @class = "form-control shadow-none rounded-0", type = "file" })
+                    @Html.ValidationMessageFor(model => model.AnhDaiDien, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <label>Trạng thái</label>
+                    <select class="form-select shadow-none rounded-0" name="TrangThai" id="TrangThai">
+                        <option value="true">Hiển thị</option>
+                        <option value="false">Ẩn</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Sản phẩm nổi bật</label>
+                    <select class="form-select shadow-none rounded-0" name="NoiBat" id="NoiBat">
+                        <option value="true">Có</option>
+                        <option value="false">Không</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary rounded-0 shadow-none mt-3">Lưu sản phẩm</button>
+                </div>
+        </div>
+        </div>
+    </div>
+}

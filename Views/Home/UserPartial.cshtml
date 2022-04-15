@@ -1,0 +1,32 @@
+﻿@using ban_quan_ao_asp.net_mvc.Models;
+@model NguoiDung
+@if (Model == null)
+{
+    <div class="d-inline-flex header-top-right__item">
+        <a href="/User/Login" class="header-top-right__link header-top-right__delimiter">Đăng nhập</a>
+        <a href="/User/Register" class="header-top-right__link">Đăng ký</a>
+    </div>
+}
+else
+{
+    <div class="d-inline-flex dropdown">
+        <button type="button" class="btn btn-sm btn-light dropdown-toggle rounded-0 shadow-none" id="userDropDownMenu"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            @Model.TenDangNhap
+        </button>
+        <div class="dropdown-menu dropdown-menu-end rounded-0" aria-labelledby="userDropDownMenu">
+            @using (Html.BeginForm("Info", "User", FormMethod.Get))
+            {
+                <button type="submit" class="dropdown-item">Tài khoản của tôi</button>
+            }
+            @using (Html.BeginForm("Order", "User", FormMethod.Get))
+            {
+                <button type="submit" class="dropdown-item">Đơn mua</button>
+            }
+            @using (Html.BeginForm("Logout", "User"))
+            {
+                <button type="submit" class="dropdown-item">Đăng xuất</button>
+            }
+        </div>
+    </div>
+}

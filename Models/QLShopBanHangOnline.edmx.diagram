@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da9b8ba1c76541bd9ef83bbda9485ace" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.Anh" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.ChiTietDH" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.ChiTietSP" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.DonHang" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.KhuyenMai" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.MauSac" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.NguoiDung" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.PhanLoai" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.PhanLoaiMSSP" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.SanPham" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLShopBanHangOnlineModel.DanhGia" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fkchitietdh_chitietsp" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fkchitietdh_donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fkchitietsp_phanloaimssp" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.FK__DonHang__MaNguoi__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fk_donhang_khuyenmai" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fkphanloaimssp_mausac" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.FK__DanhGia__MaNguoi__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fkphanloaimssp_sanpham" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fk_danhgia_sanpham" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.AnhSP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLShopBanHangOnlineModel.fk_sanpham_phanloai" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

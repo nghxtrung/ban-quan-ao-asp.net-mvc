@@ -1,0 +1,208 @@
+﻿@using ban_quan_ao_asp.net_mvc.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Searching";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- Breadcrumb -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/Home">Trang Chủ</a>
+                <span class="breadcrumb-item active" href="#">Cửa Hàng</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Filter and Products -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-3 col-md-4">
+            <h5 class="title position-relative text-dark text-uppercase mb-3">
+                <span class="bg-secondary pe-3">Lọc theo giá</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-filter-1" checked hidden>
+                        <label for="price-filter-1" class="custom-checkbox__checkmark"></label>
+                        <label for="price-filter-1" class="custom-checkbox__label">Tất cả</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-filter-2" hidden>
+                        <label for="price-filter-2" class="custom-checkbox__checkmark"></label>
+                        <label for="price-filter-2" class="custom-checkbox__label">$0 - $100</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-filter-3" hidden>
+                        <label for="price-filter-3" class="custom-checkbox__checkmark"></label>
+                        <label for="price-filter-3" class="custom-checkbox__label">$100 - $200</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-filter-4" hidden>
+                        <label for="price-filter-4" class="custom-checkbox__checkmark"></label>
+                        <label for="price-filter-4" class="custom-checkbox__label">$200 - $300</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-filter-5" hidden>
+                        <label for="price-filter-5" class="custom-checkbox__checkmark"></label>
+                        <label for="price-filter-5" class="custom-checkbox__label">$300 - $400</label>
+                    </div>
+                    <div class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-filter-6" hidden>
+                        <label for="price-filter-6" class="custom-checkbox__checkmark"></label>
+                        <label for="price-filter-6" class="custom-checkbox__label">$400 - $500</label>
+                    </div>
+                </form>
+            </div>
+            <h5 class="title position-relative text-dark text-uppercase mb-3">
+                <span class="bg-secondary pe-3">Lọc theo màu sắc</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-color-1" checked hidden>
+                        <label for="price-color-1" class="custom-checkbox__checkmark"></label>
+                        <label for="price-color-1" class="custom-checkbox__label">Tất cả</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-color-2" hidden>
+                        <label for="price-color-2" class="custom-checkbox__checkmark"></label>
+                        <label for="price-color-2" class="custom-checkbox__label">Đen</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-color-3" hidden>
+                        <label for="price-color-3" class="custom-checkbox__checkmark"></label>
+                        <label for="price-color-3" class="custom-checkbox__label">Trắng</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-color-4" hidden>
+                        <label for="price-color-4" class="custom-checkbox__checkmark"></label>
+                        <label for="price-color-4" class="custom-checkbox__label">Đỏ</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-color-5" hidden>
+                        <label for="price-color-5" class="custom-checkbox__checkmark"></label>
+                        <label for="price-color-5" class="custom-checkbox__label">Xanh nước biển</label>
+                    </div>
+                    <div class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-color-6" hidden>
+                        <label for="price-color-6" class="custom-checkbox__checkmark"></label>
+                        <label for="price-color-6" class="custom-checkbox__label">Xanh lá cây</label>
+                    </div>
+                </form>
+            </div>
+            <h5 class="title position-relative text-dark text-uppercase mb-3">
+                <span class="bg-secondary pe-3">Lọc theo size</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-size-1" checked hidden>
+                        <label for="price-size-1" class="custom-checkbox__checkmark"></label>
+                        <label for="price-size-1" class="custom-checkbox__label">Tất cả</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-size-2" hidden>
+                        <label for="price-size-2" class="custom-checkbox__checkmark"></label>
+                        <label for="price-size-2" class="custom-checkbox__label">XS</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-size-3" hidden>
+                        <label for="price-size-3" class="custom-checkbox__checkmark"></label>
+                        <label for="price-size-3" class="custom-checkbox__label">S</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-size-4" hidden>
+                        <label for="price-size-4" class="custom-checkbox__checkmark"></label>
+                        <label for="price-size-4" class="custom-checkbox__label">M</label>
+                    </div>
+                    <div class="custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-size-5" hidden>
+                        <label for="price-size-5" class="custom-checkbox__checkmark"></label>
+                        <label for="price-size-5" class="custom-checkbox__label">L</label>
+                    </div>
+                    <div class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox__input" id="price-size-6" hidden>
+                        <label for="price-size-6" class="custom-checkbox__checkmark"></label>
+                        <label for="price-size-6" class="custom-checkbox__label">XL</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                            <button class="btn btn-sm btn-light ms-2"><i class="fa fa-bars"></i></button>
+                        </div>
+                        <div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle rounded-0"
+                                        id="sortDropDownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sắp xếp
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end rounded-0" aria-labelledby="sortDropDownMenu">
+                                    <button type="button" class="dropdown-item">Mới nhất</button>
+                                    <button type="button" class="dropdown-item">Phổ biến</button>
+                                    <button type="button" class="dropdown-item">Đánh giá cao nhất</button>
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle rounded-0"
+                                        data-bs-toggle="dropdown">
+                                    Hiển thị
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end rounded-0">
+                                    <button type="button" class="dropdown-item">10</button>
+                                    <button type="button" class="dropdown-item">20</button>
+                                    <button type="button" class="dropdown-item">30</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    if (ViewBag.productListSearch == null)
+                    {
+                        <span class="text-center">Không tìm thấy sản phẩm</span>
+                    }
+                    else
+                    {
+                        foreach (var searchProductItem in ViewBag.productListSearch)
+                        {
+                            <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                                <div class="product-item bg-light mb-4">
+                                    <div class="product-img">
+                                        <img class="w-100" src="~/Content/assets/img/@searchProductItem.AnhDaiDien">
+                                        <div class="product-action">
+                                            <a class="btn btn-outline-dark btn-square rounded-0" href="#"><i class="fa fa-shopping-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="text-center py-4 product-info">
+                                        <a class="product-info__name" href="/Product/Detail?masanpham=@searchProductItem.MaSanPham">@searchProductItem.TenSanPham</a>
+                                        <div class="d-flex align-items-center justify-content-center mt-2">
+                                            <h5>@searchProductItem.GiaBan</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+                <div class="col-12">
+                    <nav>
+                        @if (ViewBag.productListCategory != null)
+                        {
+                            @Html.PagedListPager((IPagedList)ViewBag.searchProductItem, page => Url.Action("Searching", new { page = page, searchkey = ViewBag.keyword }))
+                        }
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

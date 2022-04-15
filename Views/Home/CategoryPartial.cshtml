@@ -1,0 +1,21 @@
+﻿@using ban_quan_ao_asp.net_mvc.Models;
+@model dynamic
+
+@foreach (var plcItem in Model.phanLoaiChinhList)
+{
+<div class="nav-item dropend">
+    <a href="#" class="dropend-toggle nav-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false">
+        @plcItem.PhanLoaiChinh
+        <i class="fas fa-angle-right"></i>
+    </a>
+    <div class="dropdown-menu rounded-0 border-0">
+        @foreach (var plItem in Model.phanLoaiList)
+        {
+            if (plItem.PhanLoaiChinh == plcItem.PhanLoaiChinh)
+            {
+                <a class="dropdown-item" href="/Product/Category?maphanloai=@plItem.MaPhanLoai">@plItem.PhanLoaiPhu</a>
+            }
+        }
+    </div>
+</div>
+}
